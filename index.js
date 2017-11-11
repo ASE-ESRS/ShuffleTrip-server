@@ -30,12 +30,15 @@ exports.handler = (event, context, callback) => {
 				destinationPlace : "GLA",
 				outboundPartialDate : "2017-11-11",
 				ip : "139.184.223.129"
-			})
-			.then((response) => {
+			}).then((response) => {
 				const quotes = response.data.Quotes;
 				const dates = response.data.Routes;
 
-				response(quotes);	
+				console.log(quotes);
+				response({"message" : "consoles logged"});	
+			}).catch((error) => {
+				console.log(quotes);
+				response({"message" : "consoles logged"});
 			});
 			break;
 		default:
