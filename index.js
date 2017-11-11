@@ -30,10 +30,6 @@ exports.handler = (event, context, callback) => {
 	switch(route) {
 		case "authenticate":
 			let phoneNo = "+44"+event.queryStringParameters.phoneNo;
-			response({
-				"status" : "success",
-				"phone" : phoneNo	
-			}, callback);
 			authenticate(event.queryStringParameters.phoneNo);
 			break;
 		default:
