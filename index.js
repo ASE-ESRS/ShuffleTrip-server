@@ -35,10 +35,10 @@ exports.handler = (event, context, callback) => {
 				const dates = response.data.Routes;
 
 				console.log(quotes);
-				response({"message" : "consoles logged"});	
+				response({"quotes" : quotes});	
 			}).catch((error) => {
 				console.log(error);
-				response({"message" : "consoles logged"});
+				response({"error" : error});
 			});
 			break;
 		default:
