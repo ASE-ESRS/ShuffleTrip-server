@@ -9,11 +9,8 @@
 
 var doc = require('dynamodb-doc');
 var dynamodb = new doc.DynamoDB();
+var airports = require('airports');
 
-var accountSid = 'AC6663e90981bca05810e505d169dacc6f';
-var authToken = '352933c45dfd2a86cb42689148cbaf26';
-
-var client = require('twilio')(accountSid, authToken);
 // This function is called in response to a request from a client.
 //
 // The `event` parameter holds information about the request, including the parameters.
@@ -28,34 +25,28 @@ exports.handler = (event, context, callback) => {
     let route = event.queryStringParameters.route;
 	
 	switch(route) {
-		case "authenticate":
-			let phoneNo = "+44"+event.queryStringParameters.phoneNo;
-			authenticate(event.queryStringParameters.phoneNo);
+		case "trips/shuffle":
+			response(random_airport());
 			break;
 		default:
 			response({
 				"status" : "error",
 				"message" : "Invalid request received by client"
-			}, callback);
+			});
 			break;
 	}
 
-    function authenticate(phoneNo) {
-        client.messages.create({
-            to: phoneNo,
-            from: "+441273917430",
-            body: "Welcome to ShuffleTrip!"
-			}).then(sms => {response({
-				"message" : sms.sid
-			}, callback)});
-    }
-
+	function response(json) {
+		callback(null, {
+			"statusCode" : 200,
+			"headers" : {"Content-Type" : "application/json"},
+			"body" : JSON.stringify(json)
+		});
+	}
 };
 
-function response(json, callback) {
-	callback(null, {
-		"statusCode" : 200,
-		"headers" : {"Content-Type" : "application/json"},
-		"body" : JSON.stringify(json)
-	});
+function random_airport() {
+	var keys = Object.keys(airports);
+	var random_key = keys[Math.floor(Math.random() * keys)];
+	return airports[random_key];
 }
