@@ -9,7 +9,7 @@
 
 var doc = require('dynamodb-doc');
 var dynamodb = new doc.DynamoDB();
-var airports = require('airports');
+var airports = require('./node_modules/airports.json');
 
 // This function is called in response to a request from a client.
 //
