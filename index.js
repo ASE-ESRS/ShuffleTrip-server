@@ -44,16 +44,9 @@ exports.handler = (event, context, callback) => {
             to: phoneNo,
             from: "+441273917430",
             body: "Welcome to ShuffleTrip!"
-        }, function(err, message) {
-            response({
-                "status" : "error",
-                "message" : "An error occurred whilst sending the SMS."
-            }, callback);
-        });
-        response({
-            "status" : "success",
-            "message" : "The SMS was successfully sent."
-        }, callback);
+			}).then(sms => response({
+				"message" => sms.sid
+			}, callback));
     }
 
 };
