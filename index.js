@@ -7,6 +7,10 @@
 // This code must be copied over to the AWS Lambda Management Console here:
 // https://eu-west-2.console.aws.amazon.com/lambda/home?region=eu-west-2#/functions/HandleLocationUpdate
 
+import skyscanner from "skyscanner";
+const skyscannerApiKey = "INSERT SKYSCANNER API KEY HERE";
+const skyscannerAPI = new skyscanner.API(skyscannerApiKey);
+
 var doc = require('dynamodb-doc');
 var dynamodb = new doc.DynamoDB();
 
@@ -35,3 +39,5 @@ exports.handler = (event, context, callback) => {
 		});
 	}
 };
+
+

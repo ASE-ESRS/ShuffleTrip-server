@@ -14,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/ASE-ESRS/ShuffleTrip-server/issues"
   },
-  "homepage": "https://github.com/ASE-ESRS/ShuffleTrip-server#readme"
+  "homepage": "https://github.com/ASE-ESRS/ShuffleTrip-server#readme",
+  "dependencies": {
+    "skyscannerjs": "^0.2.2"
+  }
 }
