@@ -7,7 +7,7 @@
 // This code must be copied over to the AWS Lambda Management Console here:
 // https://eu-west-2.console.aws.amazon.com/lambda/home?region=eu-west-2#/functions/HandleLocationUpdate
 
-var skyscanner = require("skyscanner");
+var skyscanner = require("skyscannerjs");
 const skyscannerApiKey = "INSERT SKYSCANNER API KEY HERE";
 const skyscannerAPI = new skyscanner.API(skyscannerApiKey);
 
