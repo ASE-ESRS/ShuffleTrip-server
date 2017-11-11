@@ -10,9 +10,7 @@
 var skyscanner = require("skyscannerjs");
 const skyscannerApiKey = "ha696723343441434034465280137182";
 const skyscannerAPI = new skyscanner.API(skyscannerApiKey);
-
-var doc = require('dynamodb-doc');
-var dynamodb = new doc.DynamoDB();
+var airports = require('./airports.json');
 
 exports.handler = (event, context, callback) => {
     let route = event.queryStringParameters.route;
@@ -22,13 +20,17 @@ exports.handler = (event, context, callback) => {
 			// Here we want to create a new trip and return it in JSON format
 			// hopefully using the Skyscanner API. We want to return a flight,
 			// and then look for hotels and things to do in that location.
+
+			var randomAirport = airports[Math.floor(Math.random()*airports.length)];
+			var airportCode = randomAirport["IataCode"];
+
 			skyscannerAPI.flights.browse.routes({ 
 				market : "UK",
 				currency : "GBP",
 				locale : "en-GB",
 				originPlace : "LGW",
-				destinationPlace : "GLA",
-				outboundPartialDate : "2017-11-11",
+				destinationPlace : airportCode,
+				outboundPartialDate : "2017-11-12",
 				ip : "139.184.223.129"
 			}).then((resp) => {
 				const quotes = resp.data.Quotes;
@@ -38,7 +40,12 @@ exports.handler = (event, context, callback) => {
 
 				var price = firstQuote['MinPrice'];
 				console.log(price);
-				response({"price" : price});	
+				response({
+					"price" : price,
+					"airport_name" : randomAirport['Name'],
+					"airport_code" : randomAirport['IataCode'],
+					"country" : randomAirport['CountryId']
+				});	
 			}).catch((error) => {
 				console.log(error);
 				response({"error" : error});
