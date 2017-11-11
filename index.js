@@ -22,7 +22,13 @@ exports.handler = (event, context, callback) => {
 			// and then look for hotels and things to do in that location.
 
 			var randomAirport = airports[Math.floor(Math.random()*airports.length)];
-			var airportCode = randomAirport["IataCode"];
+			var airportCode = randomAirport["Id"];
+
+			var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+			var day = currentDate.getDate() + 1;
+			var month = currentDate.getMonth();
+			var year = currentDate.getFullYear();
+			var tomorrow = year+"-"+month+"-"+year;
 
 			skyscannerAPI.flights.browse.routes({ 
 				market : "UK",
@@ -43,8 +49,9 @@ exports.handler = (event, context, callback) => {
 				response({
 					"price" : price,
 					"airport_name" : randomAirport['Name'],
-					"airport_code" : randomAirport['IataCode'],
-					"country" : randomAirport['CountryId']
+					"airport_code" : randomAirport['Id'],
+					"country" : randomAirport['CountryId'],
+					"airport_location" : randomAirport['Location']
 				});	
 			}).catch((error) => {
 				console.log(error);
