@@ -29,7 +29,12 @@ exports.handler = (event, context, callback) => {
 	
 	switch(route) {
 		case "authenticate":
-			authenticate(event.queryStringParameters.phoneNo);
+			let phoneNo = event.queryStringParameters.phoneNo;
+			response({
+				"status" : "success",
+				"phone" : phoneNo	
+			}, callback);
+			// authenticate(event.queryStringParameters.phoneNo);
 			break;
 		default:
 			response({
