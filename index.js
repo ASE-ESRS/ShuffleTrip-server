@@ -8,7 +8,7 @@
 // https://eu-west-2.console.aws.amazon.com/lambda/home?region=eu-west-2#/functions/HandleLocationUpdate
 
 var skyscanner = require("skyscannerjs");
-const skyscannerApiKey = "INSERT SKYSCANNER API KEY HERE";
+const skyscannerApiKey = "ha696723343441434034465280137182";
 const skyscannerAPI = new skyscanner.API(skyscannerApiKey);
 
 var doc = require('dynamodb-doc');
@@ -22,6 +22,21 @@ exports.handler = (event, context, callback) => {
 			// Here we want to create a new trip and return it in JSON format
 			// hopefully using the Skyscanner API. We want to return a flight,
 			// and then look for hotels and things to do in that location.
+			skyscannerAPI.flights.browse.routes({ 
+				market : "UK",
+				currency : "GBP",
+				locale : "en-GB",
+				originPlace : "LGW",
+				destinationPlace : "GLA",
+				outboundPartialDate : "2017-11-11",
+				ip : "139.184.223.129"
+			})
+			.then((response) => {
+				const quotes = response.data.Quotes;
+				const dates = response.data.Routes;
+
+				response(quotes);	
+			});
 			break;
 		default:
 			response({
