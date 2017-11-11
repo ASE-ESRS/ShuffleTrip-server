@@ -7,7 +7,7 @@
 // This code must be copied over to the AWS Lambda Management Console here:
 // https://eu-west-2.console.aws.amazon.com/lambda/home?region=eu-west-2#/functions/HandleLocationUpdate
 
-import skyscanner from "skyscanner";
+import skyscanner from "./skyscanner";
 const skyscannerApiKey = "INSERT SKYSCANNER API KEY HERE";
 const skyscannerAPI = new skyscanner.API(skyscannerApiKey);
 
@@ -16,7 +16,7 @@ var dynamodb = new doc.DynamoDB();
 
 exports.handler = (event, context, callback) => {
     let route = event.queryStringParameters.route;
-	
+
 	switch(route) {
 		case "trips/shuffle":
 			// Here we want to create a new trip and return it in JSON format
@@ -39,5 +39,3 @@ exports.handler = (event, context, callback) => {
 		});
 	}
 };
-
-
