@@ -40,27 +40,20 @@ exports.handler = (event, context, callback) => {
 	}
 
     function authenticate(phoneNo) {
-        if(phoneNo.match(/^(\+\d{1,3}[- ]?)?\d{10}$/) && !phoneNo.match(/0{5,}/)) {
-            client.messages.create({
-                to: phoneNo,
-                from: "+441273917430",
-                body: "Welcome to ShuffleTrip!"
-            }, function(err, message) {
-                response({
-                    "status" : "error",
-                    "message" : "An error occurred whilst sending the SMS."
-                }, callback);
-            });
-            response({
-                "status" : "success",
-                "message" : "The SMS was successfully sent."
-            }, callback);
-        } else {
+        client.messages.create({
+            to: phoneNo,
+            from: "+441273917430",
+            body: "Welcome to ShuffleTrip!"
+        }, function(err, message) {
             response({
                 "status" : "error",
-                "message" : "Invalid phone number sent by client!"
+                "message" : "An error occurred whilst sending the SMS."
             }, callback);
-        }
+        });
+        response({
+            "status" : "success",
+            "message" : "The SMS was successfully sent."
+        }, callback);
     }
 
 };
