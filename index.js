@@ -36,7 +36,7 @@ exports.handler = (event, context, callback) => {
 				locale : "en-GB",
 				originPlace : "LGW",
 				destinationPlace : airportCode,
-				outboundPartialDate : "2017-11-12",
+				outboundPartialDate : tomorrow,
 				ip : "139.184.223.129"
 			}).then((resp) => {
 				const quotes = resp.data.Quotes;
