@@ -9,24 +9,15 @@
 
 var doc = require('dynamodb-doc');
 var dynamodb = new doc.DynamoDB();
-var airports = require('./node_modules/airports.json');
-
-// This function is called in response to a request from a client.
-//
-// The `event` parameter holds information about the request, including the parameters.
-// The following parameters are expected in the request:
-//  - `userId` a unique identifier (e.g. email address) for this device (used as DB primary key).
-//  - `latitude` the current latitude of the user (expected in ISO 6709 format - https://en.wikipedia.org/wiki/ISO_6709).
-//  - `longitude` the current longitude of the user (expected in ISO 6709 format.)
-
-// To print a log in the console use -> console.log('value1 =', event.key1);
 
 exports.handler = (event, context, callback) => {
     let route = event.queryStringParameters.route;
 	
 	switch(route) {
 		case "trips/shuffle":
-			response(random_airport());
+			// Here we want to create a new trip and return it in JSON format
+			// hopefully using the Skyscanner API. We want to return a flight,
+			// and then look for hotels and things to do in that location.
 			break;
 		default:
 			response({
@@ -44,9 +35,3 @@ exports.handler = (event, context, callback) => {
 		});
 	}
 };
-
-function random_airport() {
-	var keys = Object.keys(airports);
-	var random_key = keys[Math.floor(Math.random() * keys)];
-	return airports[random_key];
-}
