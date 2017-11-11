@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Server side for the HackSussex2017 travel app",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ASE-ESRS/ShuffleTrip-server.git"
@@ -15,8 +14,5 @@
   "bugs": {
     "url": "https://github.com/ASE-ESRS/ShuffleTrip-server/issues"
   },
-  "homepage": "https://github.com/ASE-ESRS/ShuffleTrip-server#readme",
-  "dependencies": {
-    "twilio": "^3.9.2"
-  }
+  "homepage": "https://github.com/ASE-ESRS/ShuffleTrip-server#readme"
 }
