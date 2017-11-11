@@ -44,9 +44,10 @@ exports.handler = (event, context, callback) => {
             to: phoneNo,
             from: "+441273917430",
             body: "Welcome to ShuffleTrip!"
-			}).then(sms => {response({
-				"message" => sms.sid
-			}, callback)});
+			}).then(function(sms){
+                response({
+                    "message" => sms.sid
+                }, callback)});
     }
 
 };
