@@ -37,7 +37,7 @@ exports.handler = (event, context, callback) => {
 				console.log(quotes);
 				response({"message" : "consoles logged"});	
 			}).catch((error) => {
-				console.log(quotes);
+				console.log(error);
 				response({"message" : "consoles logged"});
 			});
 			break;
