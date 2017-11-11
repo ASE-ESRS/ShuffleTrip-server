@@ -34,8 +34,11 @@ exports.handler = (event, context, callback) => {
 				const quotes = response.data.Quotes;
 				const dates = response.data.Routes;
 
-				console.log(quotes);
-				response({"quotes" : quotes});	
+				var firstQuote = quotes[0];
+
+				var price = firstQuote['MinPrice'];
+				console.log(price);
+				response({"price" : price});	
 			}).catch((error) => {
 				console.log(error);
 				response({"error" : error});
