@@ -30,9 +30,9 @@ exports.handler = (event, context, callback) => {
 				destinationPlace : "GLA",
 				outboundPartialDate : "2017-11-11",
 				ip : "139.184.223.129"
-			}).then((response) => {
-				const quotes = response.data.Quotes;
-				const dates = response.data.Routes;
+			}).then((resp) => {
+				const quotes = resp.data.Quotes;
+				const dates = resp.data.Routes;
 
 				var firstQuote = quotes[0];
 
