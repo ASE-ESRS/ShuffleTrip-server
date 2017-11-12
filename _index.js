@@ -22,8 +22,7 @@ exports.handler = (event, context, callback) => {
 			// and then look for hotels and things to do in that location.
 
 			var randomAirport = airports.Everything[Math.floor(Math.random()*airports.Everything.length)];
-      console.log(randomAirpot)
-      var airportCode = randomAirport["Id"];
+			var airportCode = randomAirport["Id"];
 
 			var currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 			var day = currentDate.getDate() + 1;
@@ -61,7 +60,6 @@ exports.handler = (event, context, callback) => {
 				response({"error" : error});
 			});
 			break;
-
 		default:
 			response({
 				"status" : "error",
