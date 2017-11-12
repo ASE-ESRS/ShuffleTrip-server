@@ -50,7 +50,7 @@ exports.handler = (event, context, callback) => {
 					"price" : price,
           "country_name" : randomAirpot['CountryName'], // David Add in (might break)
 					"airport_name" : randomAirport['Name'],
-          "airport_city" : randomAirpot['City']
+          "airport_city" : randomAirpot['City'],
 					"airport_code" : randomAirport['Id'],
 					"country" : randomAirport['CountryId'],
 					"airport_location" : randomAirport['Location']
