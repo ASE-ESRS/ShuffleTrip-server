@@ -21,7 +21,7 @@ exports.handler = (event, context, callback) => {
 			// hopefully using the Skyscanner API. We want to return a flight,
 			// and then look for hotels and things to do in that location.
 
-			var randomAirport = airports.Everything[Math.floor(Math.random()*airports.Everything.length)];
+			var randomAirport = airports.Everything[0];
       console.log(randomAirpot)
       var airportCode = randomAirport["Id"];
 
