@@ -30,7 +30,7 @@ exports.handler = (event, context, callback) => {
 			var year = currentDate.getFullYear();
 			var tomorrow = year+"-"+month+"-"+year;
 
-			skyscannerAPI.flights.browse.routes({ 
+			skyscannerAPI.flights.browse.routes({
 				market : "UK",
 				currency : "GBP",
 				locale : "en-GB",
@@ -48,11 +48,13 @@ exports.handler = (event, context, callback) => {
 				console.log(price);
 				response({
 					"price" : price,
+          "country_name" : randomAirpot['CountryName'], // David Add in (might break)
 					"airport_name" : randomAirport['Name'],
+          "airport_city" : randomAirpot['City']
 					"airport_code" : randomAirport['Id'],
 					"country" : randomAirport['CountryId'],
 					"airport_location" : randomAirport['Location']
-				});	
+				});
 			}).catch((error) => {
 				console.log(error);
 				response({"error" : error});
